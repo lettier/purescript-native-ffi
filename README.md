@@ -1,3 +1,29 @@
-### C++ foreign export implementations for the standard library
+# Lambda Lantern PureScript Native FFI
 
-Note that many values are currently missing. Only a minimum set has been implemented – just beyond enough for the standard compiler tests to pass. Please feel free to contribute any that you have implemented yourself (via a pull request).
+Companion repository for [Lambda Lantern](https://github.com/lettier/lambda-lantern).
+This repository provides the foreign function exports various PureScript packages import.
+
+Please see the original [repository](https://github.com/andyarvanitis/purescript-native-ffi).
+
+## Added Files
+
+- js-timers/effect-timer.cpp
+- now/effect-now.cpp
+- panda3d/panda.cpp
+- prelude/data-ord-unsafe.cpp
+- unsafe-reference/reference.cpp
+- web-html/web-html.cpp
+- web-html/web-html-window.cpp
+
+## Modified Files
+
+- arrays/data-array.cpp
+
+## License
+
+See [LICENSE](LICENSE).
+
+## Copyright
+
+Copyright (c) 2018 Andy Arvanitis  
+Copyright (c) 2018 David Lettier

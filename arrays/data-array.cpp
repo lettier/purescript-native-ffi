@@ -90,4 +90,43 @@ exports["unsafeIndexImpl"] = [](const boxed& xs) -> boxed {
     };
 };
 
+// (C) 2018 David Lettier
+exports["findIndexImpl"] = [](const boxed& just) -> boxed {
+  return [=](const boxed& nothing) -> boxed {
+    return [=](const boxed& f) -> boxed {
+      return [=](const boxed& xs_) -> boxed {
+        const auto& xs = unbox<array_t>(xs_);
+        const long long size = xs.size();
+
+        for (int i = 0; i < size; ++i) {
+          if (unbox<bool>(f(xs[i]))) return just(i);
+        }
+        return nothing;
+      };
+    };
+  };
+};
+
+// (C) 2018 David Lettier
+exports["_deleteAt"] = [](const boxed& just) -> boxed {
+  return [=](const boxed& nothing) -> boxed {
+    return [=](const boxed& i_) -> boxed {
+      return [=](const boxed& l_) -> boxed {
+        const auto i = unbox<int>(i_);
+        const auto& l = unbox<array_t>(l_);
+        const long long size = l.size();
+        array_t xs;
+
+        if (i < 0 || i >= size) return nothing;
+
+        for (int j = 0; j < size; ++j) {
+          if (j == i) continue;
+          xs.emplace_back(l[j]);
+        }
+        return just(xs);
+      };
+    };
+  };
+};
+
 FOREIGN_END
